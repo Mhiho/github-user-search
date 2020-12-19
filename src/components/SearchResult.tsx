@@ -31,18 +31,23 @@ const SearchResult: React.FC<IProps> = (props: IProps) => {
                                     <h3>{result.login}</h3>
                                 </div>
                             }
+                            <div className="bio">
+
                             {user && user.bio ?
                                 <p>{user.bio}</p>
                                 : <p>Użytkownik nie posiada wsłasnego opisu.</p>
                             }
+                            </div>
 
-
-                            <ul>
+                            <div className="bio">
+                                <h3>Top repositories:</h3>
+                            </div>
+                            <div className="repo-buttons">
                                 {sortedRepos ? sortedRepos.map((repo: any, index: number): any => (
-                                    <li key={`repos-index-${index}`}><a href={repo.html_url}>{repo.name}</a></li>
+                                    <button className="repo-button" key={`repos-index-${index}`}><a href={repo.html_url}>{repo.name}</a></button>
                                 )
                                 ) : 'Użytkownik nie ma żadnych repozytoriów'}
-                            </ul>
+                            </div>
                         </div> : 'Nie ma takiego użytkownika' : null
             }
 
