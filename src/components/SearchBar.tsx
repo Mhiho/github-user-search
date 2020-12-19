@@ -1,5 +1,7 @@
+import classes from '*.module.css';
 import React, { useState } from 'react';
 import SearchResult from './SearchResult';
+import '../style/main.css';
 
 interface IState {
     term?: string;
@@ -35,17 +37,18 @@ const SearchBar: React.FC<IState> = () => {
         setLoading(false);
     }
     return (
-        <div>
+        <div className="container">
             <form onSubmit={onSubmitHandler}>
-                <input
-                    placeholder="Search for users"
-                    type="text"
-                    value={term}
-                    onChange={e => setTerm(e.target.value)}
-                />
-                <input
-                    type="submit"
-                />
+                <div className="searchbar-input">
+
+                    <input
+                        placeholder="Search for users"
+                        type="search"
+                        value={term}
+                        onChange={e => setTerm(e.target.value)}
+                    />
+                    <button type="submit">Search</button>
+                </div>
             </form>
             <SearchResult result={userResults} repos={repos} user={user} loading={loading} />
         </div>
