@@ -23,7 +23,7 @@ const SearchResult: React.FC<IProps> = (props: IProps) => {
             {
                 !loading ?
                     result ?
-                        <div>
+                        <>
                             {
                                 result.avatar_url &&
                                 <div className="photo-login">
@@ -35,20 +35,20 @@ const SearchResult: React.FC<IProps> = (props: IProps) => {
 
                             {user && user.bio ?
                                 <p>{user.bio}</p>
-                                : <p>Użytkownik nie posiada wsłasnego opisu.</p>
+                                : <p>User doesn't have own description.</p>
                             }
                             </div>
 
-                            <div className="bio">
+                            <div className="bio subtitle">
                                 <h3>Top repositories:</h3>
                             </div>
                             <div className="repo-buttons">
                                 {sortedRepos ? sortedRepos.map((repo: any, index: number): any => (
-                                    <button className="repo-button" key={`repos-index-${index}`}><a href={repo.html_url}>{repo.name}</a></button>
+                                    <div className="repo-button" key={`repos-index-${index}`}><a href={repo.html_url}>{repo.name}</a></div>
                                 )
-                                ) : 'Użytkownik nie ma żadnych repozytoriów'}
+                                ) : 'No repo for this user'}
                             </div>
-                        </div> : 'Nie ma takiego użytkownika' : null
+                        </> : 'There is no such a user' : null
             }
 
         </React.Fragment>

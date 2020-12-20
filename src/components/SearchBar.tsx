@@ -1,4 +1,3 @@
-import classes from '*.module.css';
 import React, { useState } from 'react';
 import SearchResult from './SearchResult';
 import '../style/main.css';
@@ -20,6 +19,9 @@ const SearchBar: React.FC<IState> = () => {
 
     const onSubmitHandler = async (e: any) => {
         e.preventDefault();
+        if (!term) {
+            return;
+        }
         const root_url = 'https://api.github.com';
 
         const response: any = await fetch(`${root_url}/search/users?q=${term}&per_page=1`);
@@ -38,19 +40,28 @@ const SearchBar: React.FC<IState> = () => {
     }
     return (
         <div className="container">
-            <form onSubmit={onSubmitHandler}>
-                <div className="searchbar-input">
+            <div className="row">
 
-                    <input
-                        placeholder="Search for users"
-                        type="search"
-                        value={term}
-                        onChange={e => setTerm(e.target.value)}
-                    />
-                    <button type="submit">Search</button>
+                <form onSubmit={onSubmitHandler}>
+                    <div className="searchbar-input">
+
+                        <input
+                            placeholder="&#xF002;  Search for users"
+                            type="search"
+                            value={term}
+                            onChange={e => setTerm(e.target.value)}
+                        />
+                        <input type="submit"
+                            value="Search"
+                        />
+                    </div>
+                </form>
+            </div>
+            <div className="row">
+                <div className="col">
+                    <SearchResult result={userResults} repos={repos} user={user} loading={loading} />
                 </div>
-            </form>
-            <SearchResult result={userResults} repos={repos} user={user} loading={loading} />
+            </div>
         </div>
     )
 }
