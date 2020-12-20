@@ -10,7 +10,6 @@ interface IState {
     loading?: boolean;
 }
 const SearchBar: React.FC<IState> = () => {
-
     const [term, setTerm] = useState('');
     const [userResults, setUserResults] = useState({});
     const [repos, setRepos] = useState([]);
@@ -23,28 +22,22 @@ const SearchBar: React.FC<IState> = () => {
             return;
         }
         const root_url = 'https://api.github.com';
-
         const response: any = await fetch(`${root_url}/search/users?q=${term}&per_page=1`);
         const data: any = await response.json();
         setUserResults(data.items[0]);
-
         const responseBio: any = await fetch(`${root_url}/users/${term}`);
         const dataBio: any = await responseBio.json();
         setUser(dataBio);
-
         const responseRepos: any = await fetch(`${root_url}/users/${term}/repos`);
         const dataRepos: any = await responseRepos.json();
         setRepos(dataRepos);
-
         setLoading(false);
     }
     return (
         <div className="container">
             <div className="row">
-
                 <form onSubmit={onSubmitHandler}>
                     <div className="searchbar-input">
-
                         <input
                             placeholder="&#xF002;  Search for users"
                             type="search"

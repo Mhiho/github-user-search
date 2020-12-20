@@ -7,8 +7,6 @@ interface IProps {
     repos?: any;
     loading: boolean;
 }
-
-
 const SearchResult: React.FC<IProps> = (props: IProps) => {
     const { result, user, repos, loading } = props;
 
@@ -28,19 +26,17 @@ const SearchResult: React.FC<IProps> = (props: IProps) => {
                                 result.avatar_url &&
                                 <div className="photo-login">
                                     <img alt="userIcon" src={result.avatar_url} />
-                                    <h3>{result.login}</h3>
+                                    <h4>{result.login}</h4>
                                 </div>
                             }
                             <div className="bio">
-
-                            {user && user.bio ?
-                                <p>{user.bio}</p>
-                                : <p>User doesn't have own description.</p>
-                            }
+                                {user && user.bio ?
+                                    <p>{user.bio}</p>
+                                    : <p>User doesn't have own description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</p>
+                                }
                             </div>
-
                             <div className="bio subtitle">
-                                <h3>Top repositories:</h3>
+                                <h4>Top repositories:</h4>
                             </div>
                             <div className="repo-buttons">
                                 {sortedRepos ? sortedRepos.map((repo: any, index: number): any => (
@@ -50,9 +46,7 @@ const SearchResult: React.FC<IProps> = (props: IProps) => {
                             </div>
                         </> : 'There is no such a user' : null
             }
-
         </React.Fragment>
     )
 }
-
 export default SearchResult;
